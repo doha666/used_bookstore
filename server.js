@@ -39,7 +39,7 @@ app.listen(process.env.PORT, () => {
   console.log("Server is running at port 5000");
 });
 
-app.use('/', routes);
-app.use('/adduser', routes);
-app.use('/deleteuser' , routes);
-app.use('/updateuser' , routes);
+/*app.use('/', stores);
+app.use('/adduser', stores);
+app.use('/deleteuser' , stores);
+app.use('/updateuser' , stores);*/
