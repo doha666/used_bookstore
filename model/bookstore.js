@@ -84,8 +84,40 @@ const authorSchema = new mongoose.Schema({
 });
 
 
-const userSchema = new mongoose.Schema({
-    userID: {
+const CustomerSchema = new mongoose.Schema({
+    customerID: {
+        type: Number,
+        required: [true, 'please add a user ID'],
+        unique: true,
+        trim: true,
+        maxlength: [10, 'user id must be less than 10 char']
+    },
+    username: {
+        type: String,
+        unique: true,
+        required: [true, 'Please enter the username']
+    },
+
+    password: {
+        type: String,
+        required: [true, 'Please enter users password']
+    },
+    phoneNumber: {
+        type: Number,
+        required: [true, 'please enter the users phone number']
+    },
+
+    address: {
+        type: String,
+        required: [true, 'please enter the address of the user']
+
+    },
+
+
+});
+
+const sellerSchema = new mongoose.Schema({
+    sellerID: {
         type: Number,
         required: [true, 'please add a user ID'],
         unique: true,
@@ -127,7 +159,7 @@ const commentSchema = new mongoose.Schema({
 
 
 
-    userID: {
+    customerID: {
         type: Number,
         required: [true, 'please enter the user ID']
     },
@@ -171,7 +203,7 @@ const seller_listing_Schema = new mongoose.Schema({
 
 
 
-    userID: {
+    sellerID: {
         type: Number,
         required: [true, 'please add a user ID'],
         unique: true,
@@ -218,7 +250,7 @@ const customer_order_Schema = new mongoose.Schema({
 
 
 
-    userID: {
+    customerID: {
         type: Number,
         required: [true, 'please add a user ID'],
         unique: true,
@@ -259,7 +291,7 @@ const book_request_Schema = new mongoose.Schema({
 
 
 
-    userID: {
+    customerID: {
         type: Number,
         required: [true, 'please add a user ID'],
         unique: true,
@@ -290,7 +322,7 @@ const cartSchema = new mongoose.Schema({
         maxlength: [10, 'cart id must be less than 10 char']
     },
 
-    userID: {
+    customerID: {
         type: Number,
         required: [true, 'please add a user ID'],
         unique: true,
@@ -344,7 +376,7 @@ const order_Schema = new mongoose.Schema({
         maxlength: [10, 'cart id must be less than 10 char']
     },
 
-    userID: {
+    customerID: {
         type: Number,
         required: [true, 'please add a user ID'],
         unique: true,
@@ -375,7 +407,7 @@ const wish_list_Schema = new mongoose.Schema({
         maxlength: [10, 'cart id must be less than 10 char']
     },
 
-    userID: {
+    customerID: {
         type: Number,
         required: [true, 'please add a user ID'],
         unique: true,
@@ -383,17 +415,19 @@ const wish_list_Schema = new mongoose.Schema({
         maxlength: [10, 'user id must be less than 10 char']
     }
 });
-let book = mongoose.model('Book', bookSchema);
-let author = mongoose.model('Author', authorSchema);
-let user = mongoose.model('User', userSchema);
-let comment = mongoose.model('Comment', commentSchema);
-let seller_Listing = mongoose.model('Seller Listing', seller_listing_Schema);
-let customer_Order = mongoose.model('Customer Order', customer_order_Schema);
-let book_Request = mongoose.model('Book Request',book_request_Schema);
-let cart = mongoose.model('Cart', cartSchema);
-let order_Cart = mongoose.model('Order Cart',order_cart_Schema);
-let wishlist = mongoose.model('Wishlist', wish_list_Schema);
+let book = mongoose.model('book', bookSchema);
 
-module.exports = mongoose.model(book, author, user, comment, seller_Listing, customer_Order, book_Request, cart, order_Cart, wishlist);
+let author = mongoose.model('author', authorSchema);
+let customer = mongoose.model('customer', CustomerSchema);
+let seller = mongoose.model('seller', sellerSchema);
+let comment = mongoose.model('comment', commentSchema);
+let seller_Listing = mongoose.model('seller_Listing', seller_listing_Schema);
+let customer_Order = mongoose.model('Customer_Order', customer_order_Schema);
+let book_Request = mongoose.model('book_Request',book_request_Schema);
+let cart = mongoose.model('cart', cartSchema);
+let order_Cart = mongoose.model('order_Cart',order_cart_Schema);
+let wishlist = mongoose.model('wishlist', wish_list_Schema);
+
+module.exports = {book, author, customer, seller,comment, seller_Listing, customer_Order, book_Request, cart, order_Cart, wishlist};
 
  
