@@ -415,6 +415,33 @@ const wish_list_Schema = new mongoose.Schema({
         maxlength: [10, 'user id must be less than 10 char']
     }
 });
+
+const adminstraion_Schema = new mongoose.Schema({
+    UserName:{
+        type:String,
+        required:[true,"please add user ID"], 
+        unique: true,
+        trim: true,
+        maxlength:[20,'User Id must be less than 10 char']
+    },
+    Email :{
+        type:String,
+        required:true,
+        unique:[true,'This email has been entered before'],
+        trim:true,
+        maxlength:[60,'User cant add more than 60 chcacrter']
+    },
+    Password:{ 
+        type:String,
+        required:[true,"you did not enter passowrd :3"],
+        maxlength:[30,"you can not enter more than 30 charchaters"],
+        trim:true
+        
+
+    }
+         
+});
+
 let book = mongoose.model('book', bookSchema);
 
 let author = mongoose.model('author', authorSchema);
@@ -427,7 +454,8 @@ let book_Request = mongoose.model('book_Request',book_request_Schema);
 let cart = mongoose.model('cart', cartSchema);
 let order_Cart = mongoose.model('order_Cart',order_cart_Schema);
 let wishlist = mongoose.model('wishlist', wish_list_Schema);
+let adminstraion =mongoose.model('adminstraion',adminstraion_Schema);
 
-module.exports = {book, author, customer, seller,comment, seller_Listing, customer_Order, book_Request, cart, order_Cart, wishlist};
+module.exports = {book, author, customer, seller,comment, seller_Listing, customer_Order, book_Request, cart, order_Cart, wishlist,adminstraion};
 
  
